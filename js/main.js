@@ -7,13 +7,19 @@ let columnN = [];
 let columnG = [];
 let columnO = [];
 
+//********************************************************
+
+//SECTION ONE
+//CREATE RANDOMLY GENERATED GAME CARD NUMBERS
+
+//********************************************************
+
 //create a randomly generated number (x) between 1 and 75
 function createRandomNumber(number) {
 	number = Math.floor((Math.random() * 75) + 1);
 	return number;
 	}
 
-//MASTER FUNCTION
 //function to keep track of numbers added to totalNumberOfNumbers array
 function arrayCounter(number) {
 	while (countArray.length < totalNumberOfNumbers) {
@@ -59,71 +65,62 @@ function removeArray(number, countArray) {
 arrayCounter(number);
 
 
+//********************************************************
+
+//SECTION ONE
+//BIND ELEMENTS TO THE DOM TO BUILD GAME BOARD
+
+//********************************************************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //create a randomly generated number (x) between 1 and 75
-// function createRandomNumber(number) {
-// 	number = Math.floor((Math.random() * 75) + 1);
-// 	return number;
-// 	}
-
-// number = createRandomNumber(number);
-
-// //check which letter array (B,I,N,G,O) that (x) belongs to
-// function checkArray(number) {
-// 	if (number <= 15) {
-// 		checkArrayBLength(number);
-// 	} else if (number >=15 && number < 30) {
-// 		checkArrayClength(number);
-// 	}
+//example code from matching card game
+// function cardShuffled(array) {
+// 	var i = 0;
+// 	var card = document.querySelectorAll(".card");
+// 	while(i < array.length) {
+// 		card[i] = array[i];
+// 		card[i].innerHTML = array[i];
+// 		i = i + 1;
+// 	} return card;
 // }
 
-// function checkArrayBLength(number) {
-// 	if (columnB.length < 4) {
-// 		checkForDuplicate(number);
-// 	} else {
-// 		console.log("too many numbers");
-// 	}
-// }
+function buildColumns(countArray, columnB, columnI, columnN, columnG, columnO) {
+	let bx = 0;
+	let ix = 0;
+	let nx = 0;
+	let gx = 0;
+	let ox = 0;
+	let bCells = $('.bCells');
+	let iCells = $('.iCells');
+	let nCells = $('.nCells');
+	let gCells = $('.gCells');
+	let oCells = $('.oCells');
+	while (bx < columnB.length) {
+		bCells[bx].innerHTML = columnB[bx];
+		bx++;
+	}
+	while (ix < columnI.length) {
+		iCells[ix].innerHTML = columnI[ix];
+		ix++;
+	}
+	while (nx < columnN.length) {
+		nCells[nx].innerHTML = columnN[nx];
+		nx++;
+	}
+	while (gx < columnG.length) {
+		gCells[gx].innerHTML = columnG[gx];
+		gx++;
+	}
+	while (ox < columnO.length) {
+		oCells[ox].innerHTML = columnO[ox];
+		ox++;
+	}
+}
 
-// function checkArrayBLength(number) {
-// 	if (columnB.length < 4) {
-// 		checkForDuplicate(number);
-// 	} else {
-// 		console.log("too many numbers");
-// 	}
-// }
+buildColumns(countArray, columnB, columnI, columnN, columnG, columnO);
 
-// checkArray(number);
-// function checkForDuplicate(number) {
-// 	columnB.push(number);
-// 	if(columnB.indexOf(number)>=0) {
-// 		console.log(columnB);
-// 	} else {
-// 		console.log("nope, skip to next random number");
-// 	}
 
-// }
+
 
 
 
@@ -137,3 +134,5 @@ arrayCounter(number);
 
 
 //code purgatory
+
+
