@@ -56,8 +56,8 @@ function removeArray(number, countArray) {
 	return countArray;
 }
 
-
 arrayCounter(number);
+
 
 
 
