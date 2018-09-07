@@ -121,14 +121,14 @@ buildColumns(columnB, columnI, columnN, columnG, columnO);
 
 let chosen;
 let timer;
+let calledNumbersArray = []
 
 function gameTimer() {
 	timer = setInterval(function() {
 		chosen = (Math.floor(Math.random() * 75) + 1);
+		filterForRepeats(chosen, calledNumbersArray);
 		$( "#calledNums" ).append(chosen + ", ");
-		compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO);
-
-	},1000)
+	}, 1000)
 }
 
 //********************************************************
@@ -136,11 +136,20 @@ function gameTimer() {
 //SECTION FOUR
 //Called numbers are marked
 //todos:
+	//Step 0: Check for duplicates
 	//Step 1: Add class "match" called number
 	//Step 2: Remove X but keep functionality
 	//Step 3: Create click event (might need to be a new section)
 
 //********************************************************
+
+function filterForRepeats(chosen, calledNumbersArray) {
+	if (calledNumbersArray.indexOf(chosen) === -1) {
+		calledNumbersArray.push(chosen);
+		compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO);
+	 }
+}
+
 
 function compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO) {
 	if (columnB.indexOf(chosen) > -1) {
@@ -153,8 +162,6 @@ function compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO) {
 		console.log("G");
 	} else if (columnO.indexOf(chosen) > -1) {
 		console.log("O");
-	} else if (countArray.indexOf(chosen) === -1) {
-		console.log('do nothing')
 	}
 }
 
@@ -174,7 +181,19 @@ gameTimer();
 
 //code purgatory
 
-
+// if (columnB.indexOf(chosen) > -1) {
+// 		console.log("B");
+// 	} else if (columnI.indexOf(chosen) > -1) {
+// 		console.log("I");
+// 	} else if (columnN.indexOf(chosen) > -1) {
+// 		console.log("N");
+// 	} else if (columnG.indexOf(chosen) > -1) {
+// 		console.log("G");
+// 	} else if (columnO.indexOf(chosen) > -1) {
+// 		console.log("O");
+// 	} else if (countArray.indexOf(chosen) === -1) {
+// 		console.log('do nothing')
+// 	}
 
 
 
