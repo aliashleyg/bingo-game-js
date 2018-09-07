@@ -127,7 +127,6 @@ function gameTimer() {
 	timer = setInterval(function() {
 		chosen = (Math.floor(Math.random() * 75) + 1);
 		filterForRepeats(chosen, calledNumbersArray);
-		$( "#calledNums" ).append(chosen + ", ");
 	}, 1000)
 }
 
@@ -146,10 +145,18 @@ function gameTimer() {
 function filterForRepeats(chosen, calledNumbersArray) {
 	if (calledNumbersArray.indexOf(chosen) === -1) {
 		calledNumbersArray.push(chosen);
+		$( "#calledNums" ).append(chosen + ", ");
 		compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO);
-	 }
+	} else if (calledNumbersArray.indexOf(chosen) > -1) {
+		removeDuplicateCalledNumber(calledNumbersArray, chosen);
+	}
 }
 
+function removeDuplicateCalledNumber(calledNumbersArray, chosen) {
+	calledNumbersArray.pop(chosen);
+	return calledNumbersArray;
+
+}
 
 function compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO) {
 	if (columnB.indexOf(chosen) > -1) {
@@ -162,6 +169,8 @@ function compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO) {
 		console.log("G");
 	} else if (columnO.indexOf(chosen) > -1) {
 		console.log("O");
+	} else if (countArray.indexOf(chosen) === -1) {
+		console.log('do nothing')
 	}
 }
 
@@ -180,6 +189,10 @@ gameTimer();
 
 
 //code purgatory
+
+// else if (calledNumbersArray.indexOf(chosen) > -1) {
+// 		removeDuplicateCalledNumber(calledNumbersArray, chosen);
+// 	}
 
 // if (columnB.indexOf(chosen) > -1) {
 // 		console.log("B");
