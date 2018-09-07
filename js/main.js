@@ -126,9 +126,9 @@ function gameTimer() {
 	timer = setInterval(function() {
 		chosen = (Math.floor(Math.random() * 75) + 1);
 		$( "#calledNums" ).append(chosen + ", ");
-		compareNumbers(chosen, countArray);
+		compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO);
 
-	},5000)
+	},1000)
 }
 
 //********************************************************
@@ -140,20 +140,22 @@ function gameTimer() {
 	//Step 2: Remove X but keep functionality
 	//Step 3: Create click event (might need to be a new section)
 
-// compare var chosen to $('.cells').innerHTML
-//   if they match, mark as matched
-//   if they don't, do nothing
-
 //********************************************************
 
-function compareNumbers(chosen, countArray) {
-	if (countArray.indexOf(chosen) === -1) {
-		console.log('no match?');
-	} else if (countArray.indexOf(chosen) > -1) {
-		console.log('match?');
+function compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO) {
+	if (columnB.indexOf(chosen) > -1) {
+		console.log("B");
+	} else if (columnI.indexOf(chosen) > -1) {
+		console.log("I");
+	} else if (columnN.indexOf(chosen) > -1) {
+		console.log("N");
+	} else if (columnG.indexOf(chosen) > -1) {
+		console.log("G");
+	} else if (columnO.indexOf(chosen) > -1) {
+		console.log("O");
+	} else if (countArray.indexOf(chosen) === -1) {
+		console.log('do nothing')
 	}
-
-
 }
 
 
