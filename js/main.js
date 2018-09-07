@@ -31,8 +31,8 @@ function arrayCounter(number) {
 //function to see if new array number is a duplicate
 function checkForDuplicates(number, countArray) {
 	if (countArray.indexOf(number) === -1) {
-		sendNumberToColumn(number);
 		countArray.push(number);
+		sendNumberToColumn(number);
 		return countArray;
 	} else if (countArray.indexOf(number) > -1) {
 		return countArray;
@@ -43,6 +43,7 @@ function checkForDuplicates(number, countArray) {
 function sendNumberToColumn(number) {
 	if (number <= 15 && columnB.length <= 4) {
 		columnB.push(number);
+
 	} else if (number > 15 && number <= 30 && columnI.length <=4){
 		columnI.push(number);
 	} else if (number > 30 && number <= 45 && columnN.length <=3){
@@ -52,12 +53,12 @@ function sendNumberToColumn(number) {
 	} else if (number > 60 && columnO.length <= 4) {
 	 	columnO.push(number);
 	} else {
-		removeArray(number, countArray);
+		ignoreNumber(number, countArray);
 	}
 }
 
 //function to remove number from total array if it doesn't fall into a column
-function removeArray(number, countArray) {
+function ignoreNumber(number, countArray) {
 	countArray.pop(number);
 	return countArray;
 }
@@ -67,24 +68,13 @@ arrayCounter(number);
 
 //********************************************************
 
-//SECTION ONE
+//SECTION TWO
 //BIND ELEMENTS TO THE DOM TO BUILD GAME BOARD
 
 //********************************************************
 
 
-//example code from matching card game
-// function cardShuffled(array) {
-// 	var i = 0;
-// 	var card = document.querySelectorAll(".card");
-// 	while(i < array.length) {
-// 		card[i] = array[i];
-// 		card[i].innerHTML = array[i];
-// 		i = i + 1;
-// 	} return card;
-// }
-
-function buildColumns(countArray, columnB, columnI, columnN, columnG, columnO) {
+function buildColumns(columnB, columnI, columnN, columnG, columnO) {
 	let bx = 0;
 	let ix = 0;
 	let nx = 0;
@@ -117,12 +107,59 @@ function buildColumns(countArray, columnB, columnI, columnN, columnG, columnO) {
 	}
 }
 
-buildColumns(countArray, columnB, columnI, columnN, columnG, columnO);
+buildColumns(columnB, columnI, columnN, columnG, columnO);
+
+
+//********************************************************
+
+//SECTION THREE
+//CHOSEN NUMBERS ARE DISPLAYED
+//todos:
+	// modify the while loop to incorporate a winner ending the loop
+
+//********************************************************
+
+let chosen;
+let timer;
+
+function gameTimer() {
+	timer = setInterval(function() {
+		chosen = (Math.floor(Math.random() * 75) + 1);
+		$( "#calledNums" ).append(chosen + ", ");
+		compareNumbers(chosen, countArray);
+
+	},5000)
+}
+
+//********************************************************
+
+//SECTION FOUR
+//Called numbers are marked
+//todos:
+	//Step 1: Add class "match" called number
+	//Step 2: Remove X but keep functionality
+	//Step 3: Create click event (might need to be a new section)
+
+// compare var chosen to $('.cells').innerHTML
+//   if they match, mark as matched
+//   if they don't, do nothing
+
+//********************************************************
+
+function compareNumbers(chosen, countArray) {
+	if (countArray.indexOf(chosen) === -1) {
+		console.log('no match?');
+	} else if (countArray.indexOf(chosen) > -1) {
+		console.log('match?');
+	}
+
+
+}
 
 
 
-
-
+gameTimer();
+// clearInterval(timer);
 
 
 
@@ -134,5 +171,12 @@ buildColumns(countArray, columnB, columnI, columnN, columnG, columnO);
 
 
 //code purgatory
+
+
+
+
+
+
+
 
 
