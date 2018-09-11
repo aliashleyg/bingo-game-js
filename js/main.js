@@ -127,6 +127,7 @@ function gameTimer() {
 	timer = setInterval(function() {
 		chosen = (Math.floor(Math.random() * 75) + 1);
 		filterForRepeats(chosen, calledNumbersArray);
+		compareNumbers(chosen,columnB,columnI,columnN,columnG,columnO);
 	}, 1000)
 }
 
@@ -139,14 +140,17 @@ function gameTimer() {
 	//Step 1: Add class "match" called number
 	//Step 2: Remove X but keep functionality
 	//Step 3: Create click event (might need to be a new section)
+	//Step 4: change display of calledNums to include the letter being called i.e. B14 instead of just 14
 
 //********************************************************
+
+let gameCardNum;
 
 function filterForRepeats(chosen, calledNumbersArray) {
 	if (calledNumbersArray.indexOf(chosen) === -1) {
 		calledNumbersArray.push(chosen);
 		$( "#calledNums" ).append(chosen + ", ");
-		compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO);
+		return calledNumbersArray;
 	} else if (calledNumbersArray.indexOf(chosen) > -1) {
 		removeDuplicateCalledNumber(calledNumbersArray, chosen);
 	}
@@ -155,31 +159,14 @@ function filterForRepeats(chosen, calledNumbersArray) {
 function removeDuplicateCalledNumber(calledNumbersArray, chosen) {
 	calledNumbersArray.pop(chosen);
 	return calledNumbersArray;
-
 }
-
-function compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO) {
-	if (columnB.indexOf(chosen) > -1) {
-		console.log("B");
-	} else if (columnI.indexOf(chosen) > -1) {
-		console.log("I");
-	} else if (columnN.indexOf(chosen) > -1) {
-		console.log("N");
-	} else if (columnG.indexOf(chosen) > -1) {
-		console.log("G");
-	} else if (columnO.indexOf(chosen) > -1) {
-		console.log("O");
-	} else if (countArray.indexOf(chosen) === -1) {
-		console.log('do nothing')
-	}
-}
-
-
 
 gameTimer();
 // clearInterval(timer);
 
-
+function compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO) {
+	console.log(calledNumbersArray);
+}
 
 
 
@@ -190,27 +177,34 @@ gameTimer();
 
 //code purgatory
 
-// else if (calledNumbersArray.indexOf(chosen) > -1) {
-// 		removeDuplicateCalledNumber(calledNumbersArray, chosen);
+// function compareNumbers(chosen, columnB, columnI, columnN, columnG, columnO) {
+// 	if (columnB.indexOf(chosen) > -1) {
+// 		gameCardNum = columnB.slice(chosen);
+// 		console.log(gameCardNum);
+// 		// daubCard(gameCardNum, columnB);
+// 	} else if (columnI.slice(chosen) > -1) {
+// 		gameCardNum = columnI.indexOf(chosen);
+// 		console.log(gameCardNum);
+// 		// daubCard(gameCardNum, columnI);
+// 	} else if (columnN.slice(chosen) > -1) {
+// 		gameCardNum = columnN.indexOf(chosen);
+// 		console.log(gameCardNum);
+// 		// daubCard(gameCardNum, columnN);
+// 	} else if (columnG.slice(chosen) > -1) {
+// 		gameCardNum = columnG.indexOf(chosen);
+// 		console.log(gameCardNum);
+// 		// daubCard(gameCardNum, columnG);
+// 	} else if (columnO.slice(chosen) > -1) {
+// 		gameCardNum = columnO.indexOf(chosen);
+// 		console.log(gameCardNum);
+// 		// daubCard(gameCardNum, columnO);
+// 	} else if (countArray.slice(chosen) === -1) {
 // 	}
-
-// if (columnB.indexOf(chosen) > -1) {
-// 		console.log("B");
-// 	} else if (columnI.indexOf(chosen) > -1) {
-// 		console.log("I");
-// 	} else if (columnN.indexOf(chosen) > -1) {
-// 		console.log("N");
-// 	} else if (columnG.indexOf(chosen) > -1) {
-// 		console.log("G");
-// 	} else if (columnO.indexOf(chosen) > -1) {
-// 		console.log("O");
-// 	} else if (countArray.indexOf(chosen) === -1) {
-// 		console.log('do nothing')
-// 	}
+// }
 
 
-
-
-
+// function daubCard(gameCardNum, columnB, columnI, columnN, columnG, columnO) {
+// 	console.log(gameCardNum);
+// }
 
 
